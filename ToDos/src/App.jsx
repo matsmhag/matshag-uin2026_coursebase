@@ -6,10 +6,7 @@ import AddToDo from './components/AddToDo'
 import { useState } from 'react'
 
 function App() {
-  const [todoList, setTodoList] = useState()
-  const [todo, setTodo] = useState()
-
-      const todoItems = [
+        const todoItems = [
         {
             id: 0,
             title: "Gå på butikken",
@@ -26,6 +23,10 @@ function App() {
             content: "Kjøpe nytt slankefor..."
         }
     ]
+  const [todoList, setTodoList] = useState(todoItems)
+  const [todo, setTodo] = useState()
+
+
   
   return (
     <main>
@@ -36,8 +37,8 @@ function App() {
         alle enkeltstående todo-elementer, slik at App-komponentet
         holder seg enkel og oversiktlig.
       */}
-      <AddToDo todo={todo} setTodo={setTodo} />
-      <Todos todoItems={todoItems} />
+      <AddToDo todo={todo} setTodo={setTodo} setTodoList={setTodoList} />
+      <Todos todoItems={todoList} />
     </main>
   )
 }

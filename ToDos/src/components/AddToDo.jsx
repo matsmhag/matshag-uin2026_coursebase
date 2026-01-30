@@ -2,7 +2,7 @@ import "../style/form.scss"
 // Funksjonskomponent som tar imot props fra forelder
 // todo: objekt som inneholder data (f.eks. title og content)
 // setTodo: funksjon for å oppdatere todo-state
-export default function AddToDo({ todo, setTodo }) {
+export default function AddToDo({ todo, setTodo, setTodoList}) {
     // Funksjon som kjøres hver gang brukeren skriver i input eller textarea
     const handleChange = (e) => {
         // Henter name og value fra input-feltet som trigget eventet
@@ -20,9 +20,16 @@ export default function AddToDo({ todo, setTodo }) {
         }))
     }
 
+    const handleClick = (e)=>{
+        e.preventDefault()
+        const uniqId = Math.floor(Math.random() * (999 - 0 + 1) + 1)
+        setTodoList((prev) => ([...prev, {id:uniqId,...todo}]))
+        console.log(todo)
+    }
+
 
     return (
-        <form className="todoform">
+        <form className="todoform" onSubmit={handleClick}>
             <label htmlFor="todotitle">Todo tittel:</label>
 
             {/* 
